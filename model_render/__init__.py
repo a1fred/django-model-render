@@ -18,7 +18,7 @@ class ModelRenderMixin(object):
             self._meta.object_name.lower() + "." + getattr(
                 settings, "MODEL_RENDER_DEFAULT_EXTENSION", "html"))
 
-    def render(self, template=None):
+    def render(self, template=None, additional = None):
         """
         Render single model to its html representation.
 
@@ -34,7 +34,12 @@ class ModelRenderMixin(object):
         :return: rendered model html string
         """
         template_path = template or self.get_template_path()
-        rendered = render_to_string(template_path, {'model': self})
+
+        template_vars = {'model': self}
+        if additional:
+            template_vars.update(additional)
+
+        rendered = render_to_string(template_path, template_vars)
         return mark_safe(rendered)
 
     class Meta:

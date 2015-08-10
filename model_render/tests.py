@@ -14,6 +14,8 @@ class SampleRenderedModel(ModelRenderMixin, SampleUnrenderedModel):
 class SampleRenderedModelWithTemplateName(SampleRenderedModel):
     template_path = "model_render/models/samplerenderredmodeltemplatename.html"
 
+class SampleRenderedModelWithTemplateNameAndVars(SampleRenderedModel):
+    template_path = "model_render/models/samplerenderredmodeltemplatenameandvars.html"
 
 class ModelRenderTests(TestCase):
     def test_render(self):
@@ -26,4 +28,11 @@ class ModelRenderTests(TestCase):
 
         tninst = SampleRenderedModelWithTemplateName()
         self.assertEqual(tninst.render().strip(), "MessageMessageMessage")
-        self.assertEqual(inst.render("model_render/models/samplerenderredmodel2.html").strip(), "MessageMessage")
+        self.assertEqual(tninst.render("model_render/models/samplerenderredmodel2.html").strip(), "MessageMessage")
+
+        tnvinst = SampleRenderedModelWithTemplateNameAndVars()
+        self.assertEqual(tnvinst.render().strip(), "MessageMessage")
+        self.assertEqual(
+            tnvinst.render(additional={'additional': "additional"}).strip(),
+            "MessageMessageadditional"
+        )

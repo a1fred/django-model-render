@@ -61,3 +61,4 @@ Something like
 ```
 Only this call for ```render()``` method will search in ```"myapp/very-custom-template.html"```.
 
+```render(template=..., additional={'myvar': 123})``` adds myvar to in-template vars.
