@@ -6,8 +6,17 @@ from django.conf import settings
 __author__ = "Dmitry Simonov"
 __email__ = "demalf@gmail.com"
 
+
 class ModelRenderMixin(object):
     template_path = None
+
+    def get_template_path(self):
+        return getattr(
+            self, "template_path", None) or os.path.join(
+            self._meta.app_label,
+            'models',
+            self._meta.object_name.lower() + "." + getattr(
+                settings, "MODEL_RENDER_DEFAULT_EXTENSION", "html"))
 
     def render(self, template=None):
         """
@@ -24,12 +33,7 @@ class ModelRenderMixin(object):
         :param template: custom template_path
         :return: rendered model html string
         """
-        template_path = template or getattr(
-            self, "template_path", None) or os.path.join(
-            self._meta.app_label,
-            'models',
-            self._meta.object_name.lower() + "." + getattr(
-                settings, "MODEL_RENDER_DEFAULT_EXTENSION", "html"))
+        template_path = template or self.get_template_path()
         rendered = render_to_string(template_path, {'model': self})
         return mark_safe(rendered)
 
