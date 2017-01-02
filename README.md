@@ -52,8 +52,11 @@ Add model template in template folders and see how use it in templates:
     {{ mymodelInstance.render }}
 ```
 
-## Template search strategy
-### By default
+## Template
+Model instance passsing in template context in variable named ```model```
+
+### Search strategy
+#### By default
 ```render()``` method search template in ```<app_label>/models/<model_name>.<settings.MODEL_RENDER_DEFAULT_EXTENSION>```  
 
 ### You can extend this two ways
@@ -67,7 +70,7 @@ class MyModel(ModelRenderMixin, models.Model):
 ```
 And all calls ```render()``` method will search in ```"myapp/custom-template.html"```.
 
-#### ```render()``` method argument with argument
+##### ```render()``` method argument with argument
 Something like
 
 ```html
@@ -75,4 +78,4 @@ Something like
 ```
 Only this call for ```render()``` method will search in ```"myapp/very-custom-template.html"```.
 
-```render(template=..., additional={'myvar': 123})``` adds myvar to in-template vars.
+```render(template=..., additional={'myvar': 123})``` adds myvar to template context.
