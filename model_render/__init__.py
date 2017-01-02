@@ -38,6 +38,3 @@ class ModelRenderMixin(object):
 
         rendered = render_to_string(template_path, template_vars)
         return mark_safe(rendered)
-
-    class Meta:
-        abstract = True
