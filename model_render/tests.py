@@ -7,19 +7,21 @@ class SampleUnrenderedModel(models.Model):
     field = "Message"
 
 
-class SampleRenderedModel(ModelRenderMixin, SampleUnrenderedModel):
+class SampleRenderedModel(ModelRenderMixin, models.Model):
     field = "Message"
 
 
-class SampleRenderedModelWithTemplateName(SampleRenderedModel):
+class SampleRenderedModelWithTemplateName(ModelRenderMixin, models.Model):
     template_path = "model_render/models/samplerenderredmodeltemplatename.html"
+    field = "Message"
 
     class Meta:
         verbose_name = 'srmwtn'
 
 
-class SampleRenderedModelWithTemplateNameAndVars(SampleRenderedModel):
+class SampleRenderedModelWithTemplateNameAndVars(ModelRenderMixin, models.Model):
     template_path = "model_render/models/samplerenderredmodeltemplatenameandvars.html"
+    field = "Message"
 
     class Meta:
         verbose_name = 'srmwtnv'

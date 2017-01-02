@@ -2,16 +2,22 @@
 [![Coverage Status](https://coveralls.io/repos/github/a1fred/django-model-render/badge.svg?branch=master)](https://coveralls.io/github/a1fred/django-model-render?branch=master)
 [![PyPI version](https://badge.fury.io/py/django-model-render.svg)](https://badge.fury.io/py/django-model-render)
 
-Django models extension that allows define model templates
+Django models extension that allows render model from instance
 
-# Installation
-## Install package from pip
-
+## Installation
+### Install package from pip
 ```bash
 $ pip install django-model-render
 ```
 
-## Add app to settings.INSTALLED_APPS
+OR from source
+
+```bash
+python setup.py install
+```
+
+## Configuration
+### Add app to settings.INSTALLED_APPS
 ```python
 INSTALLED_APPS = (
     ...
@@ -20,7 +26,8 @@ INSTALLED_APPS = (
 )
 ```
 
-If you use jinja, use ```MODEL_RENDER_DEFAULT_EXTENSION``` to configute default template extension.
+### Settings
+If you use jinja or other custom template engine you can use ```MODEL_RENDER_DEFAULT_EXTENSION``` to configute default template extension.
 ```python
 MODEL_RENDER_DEFAULT_EXTENSION = "jinja2"
 ```
@@ -37,18 +44,21 @@ class MyModel(ModelRenderMixin, models.Model):
     # ... fields here
 
 ```
-# Usage
-## Basic usage
+
+## Usage
+### Basic usage
 Add model template in template folders and see how use it in templates:
 ```html
     {{ mymodelInstance.render }}
 ```
+
 ## Template search strategy
 ### By default
-```render()``` method search template in ```<app_label>/models/<model_name>.<settings.MODEL_RENDER_DEFAULT_EXTENSION>```
+```render()``` method search template in ```<app_label>/models/<model_name>.<settings.MODEL_RENDER_DEFAULT_EXTENSION>```  
 
- You can extend this two ways:
-### Use ```Model.template_path``` attr.
+### You can extend this two ways
+
+#### Use ```Model.template_path``` attr.
 Something like
 ```python
 class MyModel(ModelRenderMixin, models.Model):
@@ -57,7 +67,7 @@ class MyModel(ModelRenderMixin, models.Model):
 ```
 And all calls ```render()``` method will search in ```"myapp/custom-template.html"```.
 
-### ```render()``` method argument with argument
+#### ```render()``` method argument with argument
 Something like
 
 ```html
