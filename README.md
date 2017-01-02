@@ -70,7 +70,7 @@ class MyModel(ModelRenderMixin, models.Model):
 ```
 And all calls ```render()``` method will search in ```"myapp/custom-template.html"```.
 
-##### ```render()``` method argument with argument
+##### Call ```render()``` method argument with argument
 Something like
 
 ```html
