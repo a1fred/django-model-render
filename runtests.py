@@ -8,6 +8,8 @@ from django.conf import settings
 
 BASE_DIR = "model_render"
 
+TEMPLATES_DIR = os.path.join(BASE_DIR, '../test_templates')
+
 DEFAULT_SETTINGS = dict(
     INSTALLED_APPS=[
         "django.contrib.auth",
@@ -25,8 +27,21 @@ DEFAULT_SETTINGS = dict(
     SECRET_KEY="not_a_secret",
     MIDDLEWARE_CLASSES=[],
     TEMPLATE_DIRS=(
-        os.path.join(BASE_DIR, 'test_templates'),
-    )
+        TEMPLATES_DIR,
+    ),
+    TEMPLATES=[
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [
+                TEMPLATES_DIR,
+            ],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                ],
+            },
+        },
+    ]
 )
 
 
