@@ -14,9 +14,15 @@ class SampleRenderedModel(ModelRenderMixin, SampleUnrenderedModel):
 class SampleRenderedModelWithTemplateName(SampleRenderedModel):
     template_path = "model_render/models/samplerenderredmodeltemplatename.html"
 
+    class Meta:
+        verbose_name = 'srmwtn'
+
 
 class SampleRenderedModelWithTemplateNameAndVars(SampleRenderedModel):
     template_path = "model_render/models/samplerenderredmodeltemplatenameandvars.html"
+
+    class Meta:
+        verbose_name = 'srmwtnv'
 
 
 class ModelRenderTests(TestCase):
