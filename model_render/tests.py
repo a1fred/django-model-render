@@ -14,8 +14,10 @@ class SampleRenderedModel(ModelRenderMixin, SampleUnrenderedModel):
 class SampleRenderedModelWithTemplateName(SampleRenderedModel):
     template_path = "model_render/models/samplerenderredmodeltemplatename.html"
 
+
 class SampleRenderedModelWithTemplateNameAndVars(SampleRenderedModel):
     template_path = "model_render/models/samplerenderredmodeltemplatenameandvars.html"
+
 
 class ModelRenderTests(TestCase):
     def test_render(self):

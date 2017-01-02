@@ -3,9 +3,6 @@ from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.conf import settings
 
-__author__ = "Dmitry Simonov"
-__email__ = "demalf@gmail.com"
-
 
 class ModelRenderMixin(object):
     template_path = None
@@ -18,7 +15,7 @@ class ModelRenderMixin(object):
             self._meta.object_name.lower() + "." + getattr(
                 settings, "MODEL_RENDER_DEFAULT_EXTENSION", "html"))
 
-    def render(self, template=None, additional = None):
+    def render(self, template=None, additional=None):
         """
         Render single model to its html representation.
 
