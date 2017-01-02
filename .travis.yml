@@ -7,7 +7,7 @@ python:
   - 3.4
   - 3.5
   - 3.6
-  - "pypy"
+  - pypy
 env:
   - DJANGO=1.4
   - DJANGO=1.5
@@ -20,10 +20,30 @@ matrix:
   exclude:
     - python: 3.4
       env: DJANGO=1.4
+    - python: 3.4
+      env: DJANGO=1.5
+    - python: 3.4
+      env: DJANGO=1.6
+    - python: 3.4
+      env: DJANGO=1.7
+
     - python: 3.5
       env: DJANGO=1.4
+    - python: 3.5
+      env: DJANGO=1.5
+    - python: 3.5
+      env: DJANGO=1.6
+    - python: 3.5
+      env: DJANGO=1.7
+
     - python: 3.6
       env: DJANGO=1.4
+    - python: 3.6
+      env: DJANGO=1.5
+    - python: 3.6
+      env: DJANGO=1.6
+    - python: 3.6
+      env: DJANGO=1.7
 cache:
   directories:
     - $HOME/.cache/pip
